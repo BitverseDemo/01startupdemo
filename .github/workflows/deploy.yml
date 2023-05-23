@@ -14,7 +14,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Install and Build
+      run: |
+        npm install
+        npm run build
+
     - name: Deploy react app to github pages
-      uses: tanwanimohit/deploy-react-to-ghpages@v1.0.1
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build
